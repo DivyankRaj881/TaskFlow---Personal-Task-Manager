@@ -24,6 +24,7 @@ function DatabaseViews({ tasks, view, onToggle, onSelectTask }) {
           <thead>
             <tr>
               <th style={{ width: "32px" }}></th>
+
               <th>Name</th>
               <th>Description</th>
               <th style={{ width: "120px" }}>Priority</th>

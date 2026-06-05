@@ -217,6 +217,9 @@ The Express app can be deployed to Node-friendly hosting providers:
 *Note: Since the database is SQLite, you should configure persistent volumes/mounts to keep `tasks.db` intact on re-deploys, or migrate to PostgreSQL/MySQL for serverless platforms.*
 
 ---
+Challenges Faced :-
+
+* Cross-Platform Binary Compatibility during Deployment: Encountered deployment crashes (such as invalid ELF header errors) on the Linux-based Render platform because local Windows-compiled native binaries (node_modules/sqlite3) were tracked in the Git repository. 
 
 Future Improvements
 

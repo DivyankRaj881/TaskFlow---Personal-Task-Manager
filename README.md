@@ -127,7 +127,32 @@ npm run dev
 
 ---
 
-PI Documentation
+## 🧪 Testing & Code Quality
+
+- **Unit Testing**: Component tests powered by Vitest and React Testing Library.
+  ```bash
+  npm test --prefix client
+  ```
+- **Code Quality & Linting**: Zero-warning ESLint checks for clean code standards.
+  ```bash
+  npm run lint --prefix client
+  ```
+- **Production Build Check**:
+  ```bash
+  npm run build --prefix client
+  ```
+
+---
+
+## ⚡ Recent Updates
+
+- **React 19 State Refactoring**: Optimized component lifecycle and `useEffect` patterns in `App.jsx` and `TaskPeekDrawer.jsx` to prevent synchronous `setState` triggers and extra re-renders.
+- **Code Hygiene**: Passed strict ESLint static analysis checks with 0 errors/warnings across all client components.
+- **Enhanced Test Environment**: Configured global testing setup in `src/test/setup.js` for Vitest and React Testing Library.
+
+---
+
+API Documentation
 
 All routes are prefixed with `/api/tasks`.
 

@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ConfirmDialog from "./ConfirmDialog";
 
 function TaskPeekDrawer({ task, isOpen, onClose, onAdd, onEdit, onDelete }) {
+  const [prevTask, setPrevTask] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
@@ -11,16 +12,15 @@ function TaskPeekDrawer({ task, isOpen, onClose, onAdd, onEdit, onDelete }) {
   const [isSaving, setIsSaving] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
-  useEffect(() => {
-    if (task) {
-      setTitle(task.title || "");
-      setDescription(task.description || "");
-      setDueDate(task.due_date || "");
-      setPriority(task.priority || "medium");
-      setCompleted(Boolean(task.completed));
-      setError("");
-    }
-  }, [task]);
+  if (task && task !== prevTask) {
+    setPrevTask(task);
+    setTitle(task.title || "");
+    setDescription(task.description || "");
+    setDueDate(task.due_date || "");
+    setPriority(task.priority || "medium");
+    setCompleted(Boolean(task.completed));
+    setError("");
+  }
 
   if (!isOpen || !task) return null;
 

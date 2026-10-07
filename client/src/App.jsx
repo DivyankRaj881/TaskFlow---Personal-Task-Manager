@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import TaskForm from "./components/TaskForm";
 import SearchBar from "./components/SearchBar";
-import FilterButtons from "./components/FilterButtons";
 import EmptyState from "./components/EmptyState";
 import DatabaseViews from "./components/DatabaseViews";
 import TaskPeekDrawer from "./components/TaskPeekDrawer";
@@ -59,8 +57,28 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetchTasks();
-  }, [fetchTasks]);
+    let ignore = false;
+    getTasks()
+      .then((data) => {
+        if (!ignore) {
+          setTasks(data);
+          setError("");
+          setLoadFailed(false);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (!ignore) {
+          const message = getApiErrorMessage(err, "Failed to load tasks");
+          setError(message);
+          setLoadFailed(true);
+          setLoading(false);
+        }
+      });
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   const handleAdd = async (taskData) => {
     try {

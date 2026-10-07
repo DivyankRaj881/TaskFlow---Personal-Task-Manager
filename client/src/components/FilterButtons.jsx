@@ -4,21 +4,17 @@ const FILTERS = [
   { id: "completed", label: "Completed" },
 ];
 
-function FilterButtons({ activeFilter, onChange, counts = {} }) {
+function FilterButtons({ activeFilter, onChange }) {
   return (
     <div className="filter-buttons" role="group" aria-label="Filter tasks">
-      {FILTERS.map(({ id, label }) => (
+      {FILTERS.map((filter) => (
         <button
-          key={id}
+          key={filter.id}
           type="button"
-          className={`btn filter-btn ${activeFilter === id ? "active" : ""}`}
-          aria-pressed={activeFilter === id}
-          onClick={() => onChange(id)}
+          className={`btn filter-btn ${activeFilter === filter.id ? "active" : ""}`}
+          onClick={() => onChange(filter.id)}
         >
-          {label}
-          {counts[id] !== undefined && (
-            <span className="filter-count">{counts[id]}</span>
-          )}
+          {filter.label}
         </button>
       ))}
     </div>
